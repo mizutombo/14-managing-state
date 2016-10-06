@@ -38,6 +38,11 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // handleFilters changes the way we show articles. Instead of hiding and
+  // showing articles everytime time the drop down changes, we're changing the
+  // url. We use the one() method to make sure we're not adding resource to the
+  // url multiple times. When the url changes, page.js routing takes over and
+  // the correct functions.
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       var resource = this.id.replace('-filter', '');
@@ -82,6 +87,11 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // this method is run after articleController.index is called.
+  // it takes the context of the ctx object as the articles arguemnt.
+  // then it removes every article from the page and appends
+  // only the articles that match the filter. By running them through
+  // the render function, which has our handlesbars compiler.
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
